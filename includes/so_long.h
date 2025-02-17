@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 16:07:22 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:26:49 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@
 #include "minilibx-linux/mlx_int.h"
 
 
-
+typedef struct s_tab_map
+{
+	char	**map;
+}	t_tab_map;
 
 typedef struct s_map
 {
     char    *map_line;
     int     len;
     int     index_line;
+	struct s_map *previous;
     struct s_map *next;
 }   t_map;
 
@@ -62,32 +66,40 @@ typedef struct s_data
 # define BLANC			"\x1b[37m"
 //!!!!!!!!!!!   ERRORS COLORS   !!!!!!!!!!!!!!!!!!!!!!!!!!/
 
-////////////map_list_fctn.c////////////////
-t_map *ft_newline_map(char *str);
-void    ft_addline_back(t_map **line_map, t_map *new_line);
-void    ft_clear_maplines(t_map **line_map);
+////////////*map_list_fctn.c////////////////
+t_map	*ft_newline_map(char *str);
+void	ft_addline_back(t_map **line_map, t_map *new_line);
+void	ft_clear_maplines(t_map **line_map);
 
 
-////////////keymap.c////////////////
-int esc_key_press(void *params);
+////////////*keymap.c////////////////
+int	esc_key_press(void *params);
 int	key_press(int keycode, void *params);
-int cross_click(void *params);
+int	cross_click(void *params);
 
-////////////handle_errors.c////////////////
+////////////*handle_errors.c////////////////
 void	error_case(int  error_code);
 void	ft_putstr_error(char *str, char *color);
 
 
-////////////parsing.c////////////////
-int	ft_map_file_name(char *str, t_map **map_lines);
-int ft_map_form(int fd, t_map **map_lines);
-void    map_in_struct(int fd, t_map **map_lines);
+////////////*parsing.c////////////////
+int		ft_map_file_name(char *str, t_map **map_lines);
+int		ft_map_form(int fd, t_map **map_lines);
+void	map_in_struct(int fd, t_map **map_lines);
 
-////////////ft_count_element.c////////////////
-int	ft_count_element_p(char *line);// int *p);
-int	ft_count_element_c(char *line, int c);
-int	ft_count_element_e(char *line, int e);
+////////////*ft_count_element.c////////////////
+int		ft_count_element_p(char *line, int p);
+int		ft_count_element_c(char *line, int c);
+int		ft_count_element_e(char *line, int e);
+int		ft_count_element_true(char *line);
 
+////////////*ft_init_tab.c////////////////
+char	**ft_init_map(t_map **map_lst);
+void	ft_clear_tab(char **tab);
+
+////////////*ft_flood_fill.c////////////////
+int	ft_prep_tab(t_map *map_lst, char **map_tab);
+int	ft_flood_fill(char **map_tab);
 
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:55:06 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 16:17:39 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:10:06 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	ft_map_element(t_map *map_lines)
 	nav = map_lines;
 	while (nav)
 	{
-		p += ft_count_element_p(nav->map_line);
+		if (ft_count_element_true(nav->map_line) != 0)
+			return (6);
+		p += ft_count_element_p(nav->map_line, p);
 		c += ft_count_element_c(nav->map_line, c);
 		e += ft_count_element_e(nav->map_line, e);
 		nav = nav->next;
@@ -45,7 +47,7 @@ int	ft_map_element(t_map *map_lines)
 int	ft_map_content(t_map **map_lines)
 {
 	int	map_elem_res;
-	
+
 	map_elem_res = 0;
 	map_elem_res = ft_map_element(*map_lines);
 	if (map_elem_res != 0)

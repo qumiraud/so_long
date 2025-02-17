@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:31 by qumiraud          #+#    #+#             */
-/*   Updated: 2024/10/24 12:16:13 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:11:25 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+char	*ft_strcpy(const char *src,  char *dest);
+
 
 typedef struct s_list
 {

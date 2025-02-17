@@ -9,6 +9,8 @@ SRC = 	src/main.c \
 		src/map_list_fctn.c \
 		src/handle_errors.c \
 		src/ft_count_element.c \
+		src/ft_flood_fill.c \
+
 
 INC = includes
 
@@ -23,7 +25,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:src/%.c=%.o))
 all: $(LIBFT) $(MLX_LIB) $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
-	@echo "Linking $(NAME)..."
+	@clear && echo "SO_LONG is ready"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX_FLAGS) -L./libft -lft
 
 $(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
@@ -60,7 +62,7 @@ re: fclean all
 # CC = cc
 # CFLAGS = -Wall -Wextra -Werror -g
 
-# SRC = src/main.c 
+# SRC = src/main.c
 
 # OBJ_D = obj
 # OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -96,16 +98,16 @@ re: fclean all
 # 	@echo "Building MiniLibX..."
 # 	@$(MAKE) -C minilibx-linux
 
-clean:
-	@echo "Cleaning object files..."
-	@rm -rf $(OBJ_DIR)
+# clean:
+# 	@echo "Cleaning object files..."
+# 	@rm -rf $(OBJ_DIR)
 
-fclean: clean
-	echo "Cleaning libraries and executable..."
-	@$(MAKE) -C libft fclean
-	@$(MAKE) -C minilibx-linux clean
-	@rm -f $(NAME)
+# fclean: clean
+# 	echo "Cleaning libraries and executable..."
+# 	@$(MAKE) -C libft fclean
+# 	@$(MAKE) -C minilibx-linux clean
+# 	@rm -f $(NAME)
 
-re: fclean all
+# re: fclean all
 
-.PHONY: all clean fclean re
+# .PHONY: all clean fclean re

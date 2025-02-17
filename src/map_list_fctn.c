@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_list_fctn.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:55:00 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 14:33:38 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:57:53 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_map	*ft_newline_map(char *str)
 	new_mapline->map_line = str;
 	new_mapline->len = ft_strchrlen(str);
 	new_mapline->index_line = 0;
+	new_mapline->previous = NULL;
 	new_mapline->next = NULL;
 
 /////////////////////////////////////
@@ -43,8 +44,10 @@ void	ft_addline_back(t_map **line_map, t_map *new_line)
 		return;
 	}
 	nav_linemap = *line_map;
-	while (nav_linemap->next)
+	while (nav_linemap->next->next)
 		nav_linemap = nav_linemap->next;
+	nav_linemap->next->previous = nav_linemap;
+	nav_linemap = nav_linemap->next;
 	nav_linemap->next = new_line;
 }
 

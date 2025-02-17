@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 15:57:26 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:16:18 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	check_arg_counter(int argc)
 
 int	main(int argc, char **argv)
 {
-	t_map *map_lines;
-	int map_parse;
+	char		**map_tab;
+	t_map		*map_lines;
+	int			map_parse;
 
 	map_lines = NULL;
 	check_arg_counter(argc);
@@ -39,10 +40,19 @@ int	main(int argc, char **argv)
 			ft_clear_maplines(&map_lines);
 		return (1);
 	}
-	printf("GG");
-	// ft_suite ???
-	ft_clear_maplines(&map_lines);
 	
+	map_parse = ft_floodfill(&map_lines, &map_tab);
+	if (map_parse != 0)
+	{
+		error_case(map_parse);
+		if (map_lines)
+			ft_clear_maplines(&map_lines);
+		return (1);
+	}
+	// ft_init(&map_tab);
+	printf("GG");
+	ft_clear_maplines(&map_lines);
+
 	return (0);
 }
 
@@ -59,7 +69,7 @@ int	main(int argc, char **argv)
 
 // int main(void)
 // {
-//     mlx_opt  win_params; 
+//     mlx_opt  win_params;
 //     //void    *img;
 //     char    *relative_path = "./Cute_Fantasy_Free/Player/Player.xpm";
 //     //void    **params;

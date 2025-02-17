@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:15:21 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 15:25:20 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:27:54 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	error_case(int  error_code)
 		ft_putstr_error("consumable missing\n", RED);
 	// 5 - escape's problem
 	else if (error_code == 5)
-		ft_putstr_error("bad number of escape\n", RED);	
-}
+		ft_putstr_error("bad number of escape\n", RED);
+	else if (error_code == 6)
+		ft_putstr_error("Wrong or empty case in map\n", RED);
+	}
