@@ -10,6 +10,8 @@ SRC = 	src/main.c \
 		src/handle_errors.c \
 		src/ft_count_element.c \
 		src/ft_flood_fill.c \
+		src/ft_get_pos.c \
+		src/ft_init_tab.c \
 
 
 INC = includes

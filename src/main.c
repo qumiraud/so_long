@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:16:18 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:12:16 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_arg_counter(int argc)
 
 int	main(int argc, char **argv)
 {
-	char		**map_tab;
+	char		**map_tab = NULL;
 	t_map		*map_lines;
 	int			map_parse;
 
@@ -40,8 +40,20 @@ int	main(int argc, char **argv)
 			ft_clear_maplines(&map_lines);
 		return (1);
 	}
-	
-	map_parse = ft_floodfill(&map_lines, &map_tab);
+
+	map_parse = ft_prep_tab(&map_lines, &map_tab);
+	int i = 0;
+	while (map_tab[i])
+	{
+		printf("\n second map\n%s\n", (map_tab)[i]);
+		i++;
+	}
+	// int	y = 0;
+	// while (map_tab[y])
+	// {
+	// 	printf("youhou bonjour miam\n%s\n", map_tab[y]);
+	// 	y++;
+	// }
 	if (map_parse != 0)
 	{
 		error_case(map_parse);
@@ -49,9 +61,13 @@ int	main(int argc, char **argv)
 			ft_clear_maplines(&map_lines);
 		return (1);
 	}
+
+
+
+	ft_clear_tab(map_tab);
 	// ft_init(&map_tab);
 	printf("GG");
-	ft_clear_maplines(&map_lines);
+	// ft_clear_maplines(&map_lines);
 
 	return (0);
 }

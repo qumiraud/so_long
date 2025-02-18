@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:55:00 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 13:57:53 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:31:17 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ t_map	*ft_newline_map(char *str)
 
 	return (new_mapline);
 }
+int		ft_lst_map_size(t_map *lst_map)
+{
+	int	i;
+
+	i = 0;
+	while (lst_map)
+	{
+		lst_map = lst_map->next;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_addline_back(t_map **line_map, t_map *new_line)
 {
@@ -44,10 +56,8 @@ void	ft_addline_back(t_map **line_map, t_map *new_line)
 		return;
 	}
 	nav_linemap = *line_map;
-	while (nav_linemap->next->next)
+	while (nav_linemap->next)
 		nav_linemap = nav_linemap->next;
-	nav_linemap->next->previous = nav_linemap;
-	nav_linemap = nav_linemap->next;
 	nav_linemap->next = new_line;
 }
 

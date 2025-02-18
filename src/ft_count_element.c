@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:00:50 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 13:29:19 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:43:37 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_count_element_c(char *line, int c)
 
 	i = 0;
 	c = 0;
+
 	while (line[i])
 	{
 		if (line[i] == 'C')

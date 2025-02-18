@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:26:49 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:20:53 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_data
 t_map	*ft_newline_map(char *str);
 void	ft_addline_back(t_map **line_map, t_map *new_line);
 void	ft_clear_maplines(t_map **line_map);
+int		ft_lst_map_size(t_map *lst_map);
+
 
 
 ////////////*keymap.c////////////////
@@ -94,12 +96,18 @@ int		ft_count_element_e(char *line, int e);
 int		ft_count_element_true(char *line);
 
 ////////////*ft_init_tab.c////////////////
-char	**ft_init_map(t_map **map_lst);
+void	ft_init_map(t_map **map_lst, char ***map_tab);
 void	ft_clear_tab(char **tab);
 
 ////////////*ft_flood_fill.c////////////////
-int	ft_prep_tab(t_map *map_lst, char **map_tab);
-int	ft_flood_fill(char **map_tab);
+int	ft_prep_tab(t_map **map_lst, char ***map_tab);
+int	ft_flood_fill(char **map_tab, int *c, int x, int y);
+void	ft_case_pos(char **map_tab, int *c, int x, int y);
+
+////////////*ft_get_pos.c////////////////
+int	ft_get_pos_x(char **map_tab);
+int	ft_get_pos_y(char **map_tab);
+
 
 
 

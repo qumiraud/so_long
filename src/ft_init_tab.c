@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_tab.c                                         :+:      :+:    :+:   */
+/*   ft_init_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:03:03 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/17 15:26:44 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:50:56 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,33 @@ void	ft_clear_tab(char **tab)
 	free (tab);
 }
 
-char **ft_init_map(t_map **map_lst)
+void ft_init_map(t_map **map_lst, char ***map_tab)
 {
 	t_map	*nav;
-	char	**map;
+	//char	**map;
 	int		i;
 
 	i = -1;
 	nav = (*map_lst);
-	map = malloc(sizeof(char *) + 1);
-	if (!map)
+	*map_tab = malloc((ft_lst_map_size(*map_lst) + 1 ) * sizeof(char *));
+	if (!(*map_tab))
 	{
 		ft_clear_maplines(map_lst);
-		return (NULL);
+		return ;
 	}
-	while (map[++i])
+	while (nav)
 	{
-		map[i] = malloc(sizeof(char) + 1);
-		if (!map[i])
+		(*map_tab)[++i] = malloc((ft_strlen(nav->map_line) + 1) * sizeof(char));
+		if (!(*map_tab)[i])
 		{
-			ft_clear_tab(map);
+			ft_clear_tab(*map_tab);
 			ft_clear_maplines(map_lst);
 			exit(EXIT_FAILURE);
 		}
-		ft_strcpy(nav->map_line, map[i]);
+		ft_strcpy(nav->map_line, (*map_tab)[i]);
+		//printf("%s\n", (*map_tab)[i]);
 		nav = nav->next;
 	}
-	return (map);
+	(*map_tab)[++i] = NULL;
+	// return (&map_tab);
 }

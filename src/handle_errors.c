@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:15:21 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 13:27:54 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:29:34 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void	error_case(int  error_code)
 	// 5 - escape's problem
 	else if (error_code == 5)
 		ft_putstr_error("bad number of escape\n", RED);
+	// 6 - escape's problem
 	else if (error_code == 6)
 		ft_putstr_error("Wrong or empty case in map\n", RED);
+	// 7 - problem is coming
+
+
+	// 8 - element aren't collectible
+	else if (error_code == 8)
+		ft_putstr_error("Elements aren't collectible\n", YELLOW);
 	}
