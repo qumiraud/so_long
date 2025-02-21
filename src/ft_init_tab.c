@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:03:03 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/18 15:50:56 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:35:28 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void ft_init_map(t_map **map_lst, char ***map_tab)
 			exit(EXIT_FAILURE);
 		}
 		ft_strcpy(nav->map_line, (*map_tab)[i]);
-		//printf("%s\n", (*map_tab)[i]);
+		printf("%s\n", (*map_tab)[i]);
 		nav = nav->next;
 	}
 	(*map_tab)[++i] = NULL;

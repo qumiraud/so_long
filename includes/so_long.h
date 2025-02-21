@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 16:20:53 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:55:08 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	ft_clear_tab(char **tab);
 ////////////*ft_flood_fill.c////////////////
 int	ft_prep_tab(t_map **map_lst, char ***map_tab);
 int	ft_flood_fill(char **map_tab, int *c, int x, int y);
-void	ft_case_pos(char **map_tab, int *c, int x, int y);
 
 ////////////*ft_get_pos.c////////////////
 int	ft_get_pos_x(char **map_tab);

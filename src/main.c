@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 16:12:16 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:53:10 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,13 @@ int	main(int argc, char **argv)
 			ft_clear_maplines(&map_lines);
 		return (1);
 	}
-
 	map_parse = ft_prep_tab(&map_lines, &map_tab);
 	int i = 0;
 	while (map_tab[i])
 	{
-		printf("\n second map\n%s\n", (map_tab)[i]);
+		printf("%s", (map_tab)[i]);
 		i++;
 	}
-	// int	y = 0;
-	// while (map_tab[y])
-	// {
-	// 	printf("youhou bonjour miam\n%s\n", map_tab[y]);
-	// 	y++;
-	// }
 	if (map_parse != 0)
 	{
 		error_case(map_parse);
@@ -62,13 +55,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-
+	// ft_init_mlx(&map_tab);
 
 	ft_clear_tab(map_tab);
-	// ft_init(&map_tab);
+
 	printf("GG");
 	// ft_clear_maplines(&map_lines);
-
 	return (0);
 }
 
