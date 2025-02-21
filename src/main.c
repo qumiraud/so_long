@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 13:53:10 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:09:08 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-	// ft_init_mlx(&map_tab);
+	ft_init_mlx(map_tab);
 
 	ft_clear_tab(map_tab);
 

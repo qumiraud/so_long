@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 12:55:08 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:30:16 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,32 @@ typedef struct s_tab_map
 
 typedef struct s_map
 {
-    char    *map_line;
-    int     len;
-    int     index_line;
-	struct s_map *previous;
-    struct s_map *next;
-}   t_map;
+	char			*map_line;
+	int				len;
+	int				index_line;
+	struct s_map	*previous;
+	struct s_map	*next;
+}				t_map;
 
-typedef struct mlx_opt
+typedef struct s_win
 {
-    void    *mlx;
-    void    *mlx_win;
-    void    *img;
-    int     width;
-    int     height;
-}                   mlx_opt;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		width;
+	int		height;
+}				t_win;
 
-typedef struct s_data
+typedef struct s_image
 {
-    //void	*img;
-    char	*addr;
-    int		bpp; // bit per pixel
-    int		line_length;
+	t_win	win;
+	void	*img_ptr;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bpp; // bit per pixel
 	int		endian;
-}                   t_data;
+	int		line_len;
+}				t_image ;
 
 //!!!!!!!!!!!   ERRORS COLORS   !!!!!!!!!!!!!!!!!!!!!!!!!!/
 # define RESET_COLOR	"\x1b[0m"
@@ -106,6 +108,12 @@ int	ft_flood_fill(char **map_tab, int *c, int x, int y);
 ////////////*ft_get_pos.c////////////////
 int	ft_get_pos_x(char **map_tab);
 int	ft_get_pos_y(char **map_tab);
+
+////////////*ft_init_mlx.c////////////////
+
+t_win	new_launch(int width, int height,char *str);
+int	ft_init_mlx(char **map_tab);
+
 
 
 
