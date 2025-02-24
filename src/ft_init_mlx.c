@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 13:12:18 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/24 15:08:10 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/24 16:13:29 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_put_img_on_map(t_image *img_48x48)
 			}
 			if (img_48x48->map[i][j] == 'C')
 			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Outdoor decoration/testOak_tree.xpm", &(img_48x48->width), &(img_48x48->height));
+				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Oak_tree_in_farmland.xpm", &(img_48x48->width), &(img_48x48->height));
 				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
 			}
 			j++;
