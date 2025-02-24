@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:01:54 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/13 13:36:04 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/21 19:35:10 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ int esc_key_press(void *params)
 
 int	key_press(int keycode, void *params)
 {
-	void	**params_tab = (void **)params;
+	void	*params_tab = params;
 
-	if (keycode == 0xff1b) // ESC
-		esc_key_press(params_tab);
+	if (keycode == KEY_ESCAPE) // ESC
+		exit_so_long(params_tab);
 	// if (keycode == 119) // W
 	// 	esc_key_press(params_tab);
 	// if (keycode == 97) // A
 	// 	esc_key_press(params_tab);
 	// if (keycode == 115) // S
 	// 	esc_key_press(params_tab);
-	// if (keycode == 100) // D
-	// 	esc_key_press(params_tab);
+	 //if (keycode == KEY_D) // D
+	 //	move_to_riht(params_tab);
 	// if (keycode == 65362) // Up Arrow
 	// 	esc_key_press(params_tab);
 	// if (keycode == 65364) // Down Arrow

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 13:12:18 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/21 15:54:37 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:48:33 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ t_win	new_launch(int width, int height,char *str)
 	return (win_return);
 }
 
-t_image	new_img(int width, int height, t_win mlx_win)
+t_image	new_img(int width, int height, t_win mlx_win, char **map)
 {
 	t_image	img_48x48;
-
+	int	i;
+	
+	i = 0;
+	img_48x48.map = malloc((ft_tablen(map) + 1) * sizeof(char *));
+	while (i < ft_tablen(map))
+	{
+		img_48x48.map[i] = ft_strdup(map[i]);
+		i++;
+	}
+	img_48x48.map[i] = NULL;
 	img_48x48.win = mlx_win;
 	img_48x48.img_ptr = mlx_new_image(mlx_win.mlx_ptr, width , height);
 	img_48x48.addr = mlx_get_data_addr(img_48x48.img_ptr, &(img_48x48.bpp), &(img_48x48.line_len), &(img_48x48.endian));
@@ -67,7 +76,7 @@ int	ft_init_mlx(char **map_tab)
 	so_long = new_launch(1080, 720, "Bonjour Miam LE JEU");
 	if (!so_long.mlx_ptr || !so_long.mlx_win)
 		return(9);
-	img_48x48 = new_img(1080, 720, so_long);
+	img_48x48 = new_img(1080, 720, so_long, map_tab);
 	//put_pixel_img(img_48x48, 540, 360, 0x00AA80BB);
 	while (map_tab[i])
 	{
@@ -90,8 +99,8 @@ int	ft_init_mlx(char **map_tab)
 	}
 
 
-	mlx_hook(so_long.mlx_win, 17, 0, exit_so_long, &img_48x48);
-
+	mlx_hook(so_long.mlx_win, KeyPress, KeyPressMask, key_press, &img_48x48);
+	mlx_hook(so_long.mlx_win, DestroyNotify, 0, exit_so_long, &img_48x48);
 	// printf("Let's find oput what's inside our structure :D\n");
 	// printf("img_ptr			: [%p]\n", img_48x48.img_ptr);
 	// printf("bpp				: [%d]\n", img_48x48.bpp);

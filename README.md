@@ -4,8 +4,8 @@ so_long together
 Realiser un projet a deux fun, avant d'attaquer philosopher.
 
 A realiser:
--creer une fenetre.ok
--gerer les inputs de fenetre ok
+-creer une fenetre. ok
+-gerer les inputs de fenetre
 -faire apparaitre une map a travers la fenetre
 -parsing de la map:
     ->[PARSING]
@@ -20,8 +20,8 @@ A realiser:
 [PARSING]
 
 
--Est-ce que la map est rectangulaire ? ok
--Meme longueur de ligne ?ok
+-Est-ce que la map est rectangulaire ?
+-Meme longueur de ligne ?
 
 -Est-ce que la map est bien rempli ?
 
