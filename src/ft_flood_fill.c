@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:10:47 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/20 13:36:00 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:36:15 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,8 @@ int	ft_prep_tab(t_map **map_lst, char ***map_tab)
 		c += ft_count_element_c((tmp_tab)[i], c);
 		i++;
 	}
-	return(ft_flood_fill((tmp_tab), &c, ft_get_pos_x(tmp_tab), ft_get_pos_y(tmp_tab)));
+	if (ft_flood_fill((tmp_tab), &c, ft_get_pos_x(tmp_tab), ft_get_pos_y(tmp_tab)) != 0)
+		return (8);
+	ft_clear_tab(tmp_tab);
+	return(0);
 }

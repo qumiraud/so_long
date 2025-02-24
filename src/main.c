@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/21 12:09:08 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:35:47 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	main(int argc, char **argv)
 			ft_clear_maplines(&map_lines);
 		return (1);
 	}
-
 	ft_init_mlx(map_tab);
+
 
 	ft_clear_tab(map_tab);
 
 	printf("GG");
-	// ft_clear_maplines(&map_lines);
+	ft_clear_maplines(&map_lines);
 	return (0);
 }
 

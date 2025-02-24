@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/21 19:47:53 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:40:38 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		ft_lst_map_size(t_map *lst_map);
 
 ////////////*keymap.c////////////////
 int	esc_key_press(void *params);
-int	key_press(int keycode, void *params);
+int	key_press(int keycode, t_image *params);
 int	cross_click(void *params);
 
 ////////////*handle_errors.c////////////////
@@ -155,12 +155,21 @@ int	ft_get_pos_x(char **map_tab);
 int	ft_get_pos_y(char **map_tab);
 
 ////////////*ft_init_mlx.c////////////////
-
 t_win	new_launch(int width, int height,char *str);
 t_image	new_img(int width, int height, t_win mlx_win, char **map);
 int		ft_init_mlx(char **map_tab);
 void	put_pixel_img(t_image img, int x, int y, int color);
 int		exit_so_long(t_win *mlx_win);
+void	ft_put_img_on_map(t_image *img_48x48);
+
+
+////////////*ft_init_mlx.c////////////////
+void	move_to_right(t_image img);
+void	move_to_left(t_image img);
+void	move_up(t_image img);
+void	move_down(t_image img);
+
+
 
 
 
