@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:01:54 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/24 16:04:09 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:12:38 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,29 @@ int	key_press(int keycode, t_image *params)
 	{
 		if (check_pos_player(*params_tab) == 0)
 			return (0);
+		params_tab->win.counter++;
 		move_to_right(*params_tab);
-		ft_put_img_on_map(params_tab);
 	}
 	else if (keycode == KEY_W || keycode == XK_Up)
 	{
 		if (check_pos_player(*params_tab) == 3)
 			return (0);
+		params_tab->win.counter++;
 		move_up(*params_tab);
-		ft_put_img_on_map(params_tab);
 	}
 	else if (keycode == KEY_A || keycode == XK_Left)
 	{
 		if (check_pos_player(*params_tab) == 1)
 			return (0);
+		params_tab->win.counter++;
 		move_to_left(*params_tab);
-		ft_put_img_on_map(params_tab);
 	}
 	else if (keycode == KEY_S || keycode == XK_Down)
 	{
 		if (check_pos_player(*params_tab) == 2)
 			return (0);
+		params_tab->win.counter++;
 		move_down(*params_tab);
-		ft_put_img_on_map(params_tab);
 	}
 	else
 		return (0);

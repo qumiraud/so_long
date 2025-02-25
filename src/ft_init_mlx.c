@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 13:12:18 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/24 16:13:29 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:03:56 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_win	new_launch(int width, int height,char *str)
 	win_return.mlx_win = mlx_new_window(win_return.mlx_ptr, width, height, str);
 	win_return.width = width;
 	win_return.height = height;
+	win_return.counter = 0;
 	return (win_return);
 }
 
@@ -86,12 +87,17 @@ void	ft_put_img_on_map(t_image *img_48x48)
 			}
 			if (img_48x48->map[i][j] == 'P')
 			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Player/voleur de tulipe.xpm", &(img_48x48->width), &(img_48x48->height));
+				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Player_with_tulipe.xpm", &(img_48x48->width), &(img_48x48->height));
 				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
 			}
 			if (img_48x48->map[i][j] == 'C')
 			{
 				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Oak_tree_in_farmland.xpm", &(img_48x48->width), &(img_48x48->height));
+				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
+			}
+			if (img_48x48->map[i][j] == 'E')
+			{
+				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/House_in_farmland.xpm", &(img_48x48->width), &(img_48x48->height));
 				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
 			}
 			j++;
@@ -105,44 +111,15 @@ int	ft_init_mlx(char **map_tab)
 {
 	t_win	so_long;
 	t_image	img_48x48;
-	// int	i;
-	// int	j;
 
-	// i = 0;
-	// j = 0;
-	so_long = new_launch(1080, 720, "Bonjour Miam LE JEU");
+	so_long = new_launch(48 * 22, 15 * 48, "Bonjour Miam LE JEU");
 	if (!so_long.mlx_ptr || !so_long.mlx_win)
 		return(9);
-	img_48x48 = new_img(1080, 720, so_long, map_tab);
-	//put_pixel_img(img_48x48, 540, 360, 0x00AA80BB);
+	img_48x48 = new_img(48 * 22, 15 * 48, so_long, map_tab);
 	ft_put_img_on_map(&img_48x48);
-	// while (map_tab[i])
-	// {
-	// 	while (map_tab[i][j])
-	// 	{
-	// 		if (map_tab[i][j] == '0')
-	// 		{
-	// 			img_48x48.img_ptr = mlx_xpm_file_to_image(img_48x48.win.mlx_ptr, "Cute_Fantasy_Free/Tiles/FarmLand_Tile.xpm", &(img_48x48.width), &(img_48x48.height));
-	// 			mlx_put_image_to_window(img_48x48.win.mlx_ptr, img_48x48.win.mlx_win, img_48x48.img_ptr, j*48, i*48);
-	// 		}
-	// 		if (map_tab[i][j] == '1')
-	// 		{
-	// 			img_48x48.img_ptr = mlx_xpm_file_to_image(img_48x48.win.mlx_ptr, "Cute_Fantasy_Free/Tiles/grass_with_tulipe.xpm", &(img_48x48.width), &(img_48x48.height));
-	// 			mlx_put_image_to_window(img_48x48.win.mlx_ptr, img_48x48.win.mlx_win, img_48x48.img_ptr, j*48, i*48);
-	// 		}
-	// 		j++;
-	// 	}
-	// 	j = 0;
-	// 	i++;
-	// }
 	mlx_hook(so_long.mlx_win, KeyPress, KeyPressMask, key_press, &img_48x48);
 	mlx_hook(so_long.mlx_win, DestroyNotify, 0, exit_so_long, &img_48x48);
-	// printf("Let's find oput what's inside our structure :D\n");
-	// printf("img_ptr			: [%p]\n", img_48x48.img_ptr);
-	// printf("bpp				: [%d]\n", img_48x48.bpp);
-	// printf("line_len		: [%d]\n", img_48x48.line_len);
-	// printf("endian			: [%d]\n", img_48x48.endian);
-	// printf("addr			: [%p]\n", img_48x48.addr);
+
 	mlx_loop(so_long.mlx_ptr);
 	return (0);
 }

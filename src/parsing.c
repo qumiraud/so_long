@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:55:06 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/17 14:10:06 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:04:11 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	ft_map_content(t_map **map_lines)
 	map_elem_res = ft_map_element(*map_lines);
 	if (map_elem_res != 0)
 		return (map_elem_res);
-
-
-
 	return (0);
 }
 // rassemble les fonctions de parsing pour valider la map
@@ -62,7 +59,7 @@ int	ft_map_content(t_map **map_lines)
 void	map_in_struct(int fd, t_map **map_lines)
 {
 	int		i;
-	t_map *nav;
+	t_map	*nav;
 	char	*line;
 
 	i = 0;
@@ -73,6 +70,8 @@ void	map_in_struct(int fd, t_map **map_lines)
 	{
 		ft_addline_back(map_lines, ft_newline_map(line));
 		line = get_next_line(fd);
+		if (!line)
+			return;
 	}
 	nav = (*map_lines);
 	while (nav)
@@ -95,15 +94,20 @@ int	ft_map_form(int fd, t_map **map_lines)
 		close (fd);
 		exit(EXIT_FAILURE);
 	}
+	if (nav_map_lines->len > 22)
+		return (10);
 	while (nav_map_lines->next)
 	{
 		if (nav_map_lines->len != nav_map_lines->next->len)
 		{
-//			close (fd);
+			close (fd);
 			return (2);
 		}
 		nav_map_lines = nav_map_lines->next;
 	}
+	if (nav_map_lines->index_line > 15)
+		return(10);
+	close (fd);
 	return (0);
 }
 

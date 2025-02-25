@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:55:00 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/24 10:40:55 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:01:11 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_clear_maplines(t_map **line_map)
 	while (*line_map)
 	{
 		nav_linemap = *line_map;
-		//  free ((*line_map)->map_line);
+		 free ((*line_map)->map_line);
 		*line_map = (*line_map)->next;
 		free(nav_linemap);
 	}

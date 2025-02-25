@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:38:52 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/18 11:54:13 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:23:25 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_get_pos_x(char **map_tab)
 		}
 		i++;
 	}
-	printf("je passe par la \n");
 	return (x);
 }
 

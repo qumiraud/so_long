@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:15:21 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 10:44:02 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:11:20 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	error_case(int  error_code)
 	// 8 - element aren't collectible
 	else if (error_code == 8)
 		ft_putstr_error("Elements aren't collectible\n", YELLOW);
+	else if (error_code == 10)
+		ft_putstr_error("the map is more bigger than the window\npls resize the map\nmax_width : 22 | max_height : 15\n",YELLOW);
 	}

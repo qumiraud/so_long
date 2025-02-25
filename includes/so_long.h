@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/24 14:40:38 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:15:31 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_win
 	void	*mlx_win;
 	int		width;
 	int		height;
+    int     counter;
 }				t_win;
 
 typedef struct s_image
@@ -162,13 +163,14 @@ void	put_pixel_img(t_image img, int x, int y, int color);
 int		exit_so_long(t_win *mlx_win);
 void	ft_put_img_on_map(t_image *img_48x48);
 
-
 ////////////*ft_init_mlx.c////////////////
 void	move_to_right(t_image img);
 void	move_to_left(t_image img);
 void	move_up(t_image img);
 void	move_down(t_image img);
 
+////////////*move_couner.c////////////////
+void	counter_on_window(t_image img);
 
 
 
