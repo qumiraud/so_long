@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:07:02 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 16:19:40 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 11:11:18 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int    ft_count_collec(char **map_tab)
 
 void    move_to_right(t_image img)
 {
-    int    x;
-    int    y;
+    int		x;
+    int		y;
+	int		i;
 
+	i = 48;
     x = ft_get_pos_x(img.map);
     y = ft_get_pos_y(img.map);
     if (img.map[y][x + 1] != '1' && (img.map[y][x + 1] != 'E' || ft_count_collec(img.map) == 0))
@@ -45,10 +47,18 @@ void    move_to_right(t_image img)
         if (img.map[y][x + 1] == 'E')
             exit(EXIT_FAILURE); // remplacer par vrai fonction free puis exit
         img.map[y][x] = '0';
+        img.map[y][x + 1] = 'P';
 		img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/Tiles/FarmLand_Tile.xpm", &(img.width), &(img.height));
 		mlx_put_image_to_window(img.win.mlx_ptr, img.win.mlx_win, img.img_ptr, x*48, y*48);
-        img.map[y][x + 1] = 'P';
-		img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/P_right.xpm", &(img.width), &(img.height));
+        while (i >= 0)
+        {
+			//usleep(2 * 1000);
+			img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/P_moveR.xpm", &(img.width), &(img.height));
+			mlx_put_image_to_window(img.win.mlx_ptr, img.win.mlx_win, img.img_ptr, (x + 1)*48 - i, y*48);
+			mlx_destroy_image(img.win.mlx_ptr, img.img_ptr);
+			i -= 1;
+        }
+        img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/P_right.xpm", &(img.width), &(img.height));
 		mlx_put_image_to_window(img.win.mlx_ptr, img.win.mlx_win, img.img_ptr, (x + 1)*48, y*48);
 		counter_on_window(img);
     }
@@ -67,7 +77,7 @@ void    move_to_left(t_image img)
             exit(EXIT_FAILURE); // remplacer par vrai fonction free puis exit
         img.map[y][x] = '0';
         img.map[y][x - 1] = 'P';
-		img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/Player_with_tulipe.xpm", &(img.width), &(img.height));
+		img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/P_left.xpm", &(img.width), &(img.height));
 		mlx_put_image_to_window(img.win.mlx_ptr, img.win.mlx_win, img.img_ptr, (x - 1)*48, y*48);
 		img.img_ptr = mlx_xpm_file_to_image(img.win.mlx_ptr, "Cute_Fantasy_Free/Tiles/FarmLand_Tile.xpm", &(img.width), &(img.height));
 		mlx_put_image_to_window(img.win.mlx_ptr, img.win.mlx_win, img.img_ptr, x*48, y*48);

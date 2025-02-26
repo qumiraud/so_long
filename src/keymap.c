@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:01:54 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 15:12:38 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 09:53:42 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ int	key_press(int keycode, t_image *params)
 
 	if (keycode == KEY_ESCAPE) // ESC
 		exit_so_long(&params_tab->win);
+
+
+
+		
 	if (keycode == KEY_D || keycode == XK_Right)
 	{
 		if (check_pos_player(*params_tab) == 0)

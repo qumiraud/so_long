@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 13:12:18 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/25 16:03:56 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 10:55:07 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ int	exit_so_long(t_win *mlx_win)
 {
 	if (mlx_win)
 		mlx_destroy_window(mlx_win->mlx_ptr, mlx_win->mlx_win);
-	exit(EXIT_SUCCESS);
+	mlx_loop_end(mlx_win->mlx_ptr);
+
+	 exit(EXIT_SUCCESS);
 }
 
 void	ft_put_img_on_map(t_image *img_48x48)
@@ -121,6 +123,10 @@ int	ft_init_mlx(char **map_tab)
 	mlx_hook(so_long.mlx_win, DestroyNotify, 0, exit_so_long, &img_48x48);
 
 	mlx_loop(so_long.mlx_ptr);
+
+	// free(so_long.mlx_ptr); necessite verif pl
+
+
 	return (0);
 }
 

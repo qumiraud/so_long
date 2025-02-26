@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:15:21 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 11:11:20 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 09:54:43 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,4 @@ void	error_case(int  error_code)
 		ft_putstr_error("Elements aren't collectible\n", YELLOW);
 	else if (error_code == 10)
 		ft_putstr_error("the map is more bigger than the window\npls resize the map\nmax_width : 22 | max_height : 15\n",YELLOW);
-	}
+}

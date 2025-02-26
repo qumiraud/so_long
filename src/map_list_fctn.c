@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:55:00 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 15:01:11 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 09:51:32 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ t_map	*ft_newline_map(char *str)
 	new_mapline->index_line = 0;
 	new_mapline->previous = NULL;
 	new_mapline->next = NULL;
-
-/////////////////////////////////////
-//	free (new_mapline->map_line);
-//	free (new_mapline);
-/////////////////////////////////////
-
 	return (new_mapline);
 }
 int		ft_lst_map_size(t_map *lst_map)

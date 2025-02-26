@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/24 11:35:47 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/26 09:52:50 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	map_parse = ft_prep_tab(&map_lines, &map_tab);
-	int i = 0;
-	while (map_tab[i])
-	{
-		printf("%s", (map_tab)[i]);
-		i++;
-	}
+	// int i = 0;
+	// while (map_tab[i])
+	// {
+	// 	printf("%s", (map_tab)[i]);
+	// 	i++;
+	// }
 	if (map_parse != 0)
 	{
 		error_case(map_parse);
