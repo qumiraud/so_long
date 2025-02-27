@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 13:12:18 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/26 10:55:07 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:35:26 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_win	new_launch(int width, int height,char *str)
 t_image	new_img(int width, int height, t_win mlx_win, char **map)
 {
 	t_image	img_48x48;
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	img_48x48.map = malloc((ft_tablen(map) + 1) * sizeof(char *));
 	while (i < ft_tablen(map))
@@ -38,32 +38,44 @@ t_image	new_img(int width, int height, t_win mlx_win, char **map)
 	}
 	img_48x48.map[i] = NULL;
 	img_48x48.win = mlx_win;
-	img_48x48.img_ptr = mlx_new_image(mlx_win.mlx_ptr, width , height);
-	img_48x48.addr = mlx_get_data_addr(img_48x48.img_ptr, &(img_48x48.bpp), &(img_48x48.line_len), &(img_48x48.endian));
+	img_48x48.img_ptr = mlx_new_image(mlx_win.mlx_ptr,
+			width, height);
+	img_48x48.addr = mlx_get_data_addr(img_48x48.img_ptr,
+			&(img_48x48.bpp), &(img_48x48.line_len), &(img_48x48.endian));
 	img_48x48.width = width;
 	img_48x48.height = height;
 	return (img_48x48);
 }
 
-void	put_pixel_img(t_image img, int x, int y, int color)
+// void	put_pixel_img(t_image img, int x, int y, int color)
+// {
+// 	char	*dst;
+// 	if (x >= 0 && y >= 0 && x < img.width && y < img.height)
+// 	{
+// 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+// 		*(unsigned int *) dst = color;
+// 	}
+// }
+
+
+
+int	exit_so_long(t_image *img)
 {
-	char	*dst;
-	if (x >= 0 && y >= 0 && x < img.width && y < img.height)
-	{
-		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
-		*(unsigned int *) dst = color;
-	}
+	mlx_loop_end(img->win.mlx_ptr);
+	mlx_destroy_window(img->win.mlx_ptr, img->win.mlx_win);
+	mlx_destroy_display(img->win.mlx_ptr);
+	ft_clear_tab(img->map);
+	free(img->win.mlx_ptr);
+	exit(EXIT_SUCCESS);
 }
 
-
-
-int	exit_so_long(t_win *mlx_win)
+void	ref_ft_put_img_on_map(t_image *img_48x48, int i, int j, char *str)
 {
-	if (mlx_win)
-		mlx_destroy_window(mlx_win->mlx_ptr, mlx_win->mlx_win);
-	mlx_loop_end(mlx_win->mlx_ptr);
-
-	 exit(EXIT_SUCCESS);
+	img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, str,
+			&(img_48x48->width), &(img_48x48->height));
+	mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win,
+		img_48x48->img_ptr, j * 48, i * 48);
+	mlx_destroy_image(img_48x48->win.mlx_ptr, img_48x48->img_ptr);
 }
 
 void	ft_put_img_on_map(t_image *img_48x48)
@@ -78,30 +90,15 @@ void	ft_put_img_on_map(t_image *img_48x48)
 		while (img_48x48->map[i][j])
 		{
 			if (img_48x48->map[i][j] == '0')
-			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Tiles/FarmLand_Tile.xpm", &(img_48x48->width), &(img_48x48->height));
-				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
-			}
+				ref_ft_put_img_on_map(img_48x48, i, j, "C_F_F/T/F_T.xpm");
 			if (img_48x48->map[i][j] == '1')
-			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Tiles/grass_with_tulipe.xpm", &(img_48x48->width), &(img_48x48->height));
-				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
-			}
+				ref_ft_put_img_on_map(img_48x48, i, j, "C_F_F/T/G_W_T.xpm");
 			if (img_48x48->map[i][j] == 'P')
-			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Player_with_tulipe.xpm", &(img_48x48->width), &(img_48x48->height));
-				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
-			}
+				ref_ft_put_img_on_map(img_48x48, i, j, "C_F_F/P_W_T.xpm");
 			if (img_48x48->map[i][j] == 'C')
-			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/Oak_tree_in_farmland.xpm", &(img_48x48->width), &(img_48x48->height));
-				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
-			}
+				ref_ft_put_img_on_map(img_48x48, i, j, "C_F_F/O_T_I_F.xpm");
 			if (img_48x48->map[i][j] == 'E')
-			{
-				img_48x48->img_ptr = mlx_xpm_file_to_image(img_48x48->win.mlx_ptr, "Cute_Fantasy_Free/House_in_farmland.xpm", &(img_48x48->width), &(img_48x48->height));
-				mlx_put_image_to_window(img_48x48->win.mlx_ptr, img_48x48->win.mlx_win, img_48x48->img_ptr, j*48, i*48);
-			}
+				ref_ft_put_img_on_map(img_48x48, i, j, "C_F_F/H_I_F.xpm");
 			j++;
 		}
 		j = 0;
@@ -116,17 +113,14 @@ int	ft_init_mlx(char **map_tab)
 
 	so_long = new_launch(48 * 22, 15 * 48, "Bonjour Miam LE JEU");
 	if (!so_long.mlx_ptr || !so_long.mlx_win)
-		return(9);
+		return (9);
 	img_48x48 = new_img(48 * 22, 15 * 48, so_long, map_tab);
+	ft_clear_tab(map_tab);
+	mlx_destroy_image(img_48x48.win.mlx_ptr, img_48x48.img_ptr);
 	ft_put_img_on_map(&img_48x48);
 	mlx_hook(so_long.mlx_win, KeyPress, KeyPressMask, key_press, &img_48x48);
 	mlx_hook(so_long.mlx_win, DestroyNotify, 0, exit_so_long, &img_48x48);
-
 	mlx_loop(so_long.mlx_ptr);
-
-	// free(so_long.mlx_ptr); necessite verif pl
-
-
 	return (0);
 }
 

@@ -6,14 +6,11 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/26 09:52:50 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:26:04 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-/////////////////////////////////////////////////////////
-//futur main
 
 void	check_arg_counter(int argc)
 {
@@ -22,6 +19,15 @@ void	check_arg_counter(int argc)
 		printf("wrong argument number");
 		exit (EXIT_FAILURE);
 	}
+}
+
+void	ref_main(int map_parse, t_map *map_lines, char **map_tab)
+{
+	error_case(map_parse);
+	if (map_lines)
+		ft_clear_maplines(&map_lines);
+	if (map_tab)
+		ft_clear_tab(map_tab);
 }
 
 int	main(int argc, char **argv)
@@ -35,32 +41,20 @@ int	main(int argc, char **argv)
 	map_parse = ft_map_file_name(argv[1], &map_lines);
 	if (map_parse != 0)
 	{
-		error_case(map_parse);
-		if (map_lines)
-			ft_clear_maplines(&map_lines);
+		ref_main(map_parse, map_lines, map_tab);
+		//* pas de print d'erreurs a corriger
 		return (1);
 	}
 	map_parse = ft_prep_tab(&map_lines, &map_tab);
-	// int i = 0;
-	// while (map_tab[i])
-	// {
-	// 	printf("%s", (map_tab)[i]);
-	// 	i++;
-	// }
-	if (map_parse != 0)
+	if (map_parse != 0) //* manque de free si == 0
 	{
-		error_case(map_parse);
-		if (map_lines)
-			ft_clear_maplines(&map_lines);
+		ref_main(map_parse, map_lines, map_tab);
+		//* pas de print d'erreurs a corriger
 		return (1);
 	}
 	ft_init_mlx(map_tab);
-
-
-	ft_clear_tab(map_tab);
-
-	printf("GG");
-	ft_clear_maplines(&map_lines);
+	// ft_clear_maplines(&map_lines); //*need verif en cas d'erreur
+	// ft_clear_tab(map_tab); //*need verif en cas d'erreur
 	return (0);
 }
 
@@ -79,7 +73,7 @@ int	main(int argc, char **argv)
 // {
 //     mlx_opt  win_params;
 //     //void    *img;
-//     char    *relative_path = "./Cute_Fantasy_Free/Player/Player.xpm";
+//     char    *relative_path = "./Cusy_Free/Player/Player.xpm";
 //     //void    **params;
 
 //     win_params.mlx = mlx_init();

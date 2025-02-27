@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:05:59 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 13:15:31 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:05:28 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #include "../libft/libft.h"
 #include "minilibx-linux/mlx.h"
 #include "minilibx-linux/mlx_int.h"
-
 
 typedef struct s_tab_map
 {
@@ -56,6 +55,8 @@ typedef struct s_image
 	int		bpp; // bit per pixel
 	int		endian;
 	int		line_len;
+    int     x;
+    int     y;//test x/y
 	char 	**map; //map de jeu
 }				t_image ;
 
@@ -159,8 +160,7 @@ int	ft_get_pos_y(char **map_tab);
 t_win	new_launch(int width, int height,char *str);
 t_image	new_img(int width, int height, t_win mlx_win, char **map);
 int		ft_init_mlx(char **map_tab);
-void	put_pixel_img(t_image img, int x, int y, int color);
-int		exit_so_long(t_win *mlx_win);
+int		exit_so_long(t_image *mlx_win);
 void	ft_put_img_on_map(t_image *img_48x48);
 
 ////////////*ft_init_mlx.c////////////////
@@ -171,6 +171,13 @@ void	move_down(t_image img);
 
 ////////////*move_couner.c////////////////
 void	counter_on_window(t_image img);
+
+////////////*move_animation.c////////////////
+void	anim_move_up(t_image img, int x, int y);
+void	anim_move_right(t_image img, int x, int y);
+int before_anim_static(t_image img);
+int	    anim_static(t_image img, int x, int y);
+
 
 
 
