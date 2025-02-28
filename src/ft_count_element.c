@@ -6,20 +6,19 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:00:50 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 14:43:37 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:19:30 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int ft_count_element_true(char *line)
+int	ft_count_element_true(char *line)
 {
 	int	i;
 	int	x;
 
 	i = 0;
 	x = 0;
-
 	while (line [i])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P'
@@ -28,8 +27,7 @@ int ft_count_element_true(char *line)
 		i++;
 	}
 	if (x != 0)
-		return (x);
-		// changer le numero de renvoie  a la preference de monsieur
+		return (x); //* changer le numero de renvoie  a la preference de monsieur
 	return (0);
 }
 
@@ -56,7 +54,6 @@ int	ft_count_element_c(char *line, int c)
 
 	i = 0;
 	c = 0;
-
 	while (line[i])
 	{
 		if (line[i] == 'C')
@@ -81,7 +78,6 @@ int	ft_count_element_e(char *line, int e)
 			e++;
 		}
 		i++;
-
 	}
 	return (e);
 }

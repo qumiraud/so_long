@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:03:03 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/20 13:35:28 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:52:04 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ void	ft_clear_tab(char **tab)
 	free (tab);
 }
 
-void ft_init_map(t_map **map_lst, char ***map_tab)
+void	ft_init_map(t_map **map_lst, char ***map_tab)
 {
 	t_map	*nav;
-	//char	**map;
 	int		i;
 
 	i = -1;
 	nav = (*map_lst);
-	*map_tab = malloc((ft_lst_map_size(*map_lst) + 1 ) * sizeof(char *));
+	*map_tab = malloc((ft_lst_map_size(*map_lst) + 1) * sizeof(char *));
 	if (!(*map_tab))
 	{
 		ft_clear_maplines(map_lst);
@@ -49,9 +48,7 @@ void ft_init_map(t_map **map_lst, char ***map_tab)
 			exit(EXIT_FAILURE);
 		}
 		ft_strcpy(nav->map_line, (*map_tab)[i]);
-		printf("%s\n", (*map_tab)[i]);
 		nav = nav->next;
 	}
 	(*map_tab)[++i] = NULL;
-	// return (&map_tab);
 }

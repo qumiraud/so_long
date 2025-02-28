@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:55:06 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/25 15:04:11 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/27 11:40:43 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 int	ft_map_element(t_map *map_lines)
 {
 	t_map	*nav;
-	int		p; // == 1 a la fin;
-	int		c; // == X a la fin;
-	int		e; // == 1 a la fin;
+	int		p;
+	int		c;
+	int		e;
 
 	p = 0;
 	c = 0;
@@ -54,7 +54,6 @@ int	ft_map_content(t_map **map_lines)
 		return (map_elem_res);
 	return (0);
 }
-// rassemble les fonctions de parsing pour valider la map
 
 void	map_in_struct(int fd, t_map **map_lines)
 {
@@ -65,13 +64,13 @@ void	map_in_struct(int fd, t_map **map_lines)
 	i = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return;
+		return ;
 	while (line)
 	{
 		ft_addline_back(map_lines, ft_newline_map(line));
 		line = get_next_line(fd);
 		if (!line)
-			return;
+			return ;
 	}
 	nav = (*map_lines);
 	while (nav)
@@ -80,12 +79,12 @@ void	map_in_struct(int fd, t_map **map_lines)
 		i++;
 		nav = nav->next;
 	}
-	return;
+	return ;
 }
 
 int	ft_map_form(int fd, t_map **map_lines)
 {
-	t_map *nav_map_lines;
+	t_map	*nav_map_lines;
 
 	map_in_struct(fd, map_lines);
 	nav_map_lines = (*map_lines);
@@ -106,24 +105,16 @@ int	ft_map_form(int fd, t_map **map_lines)
 		nav_map_lines = nav_map_lines->next;
 	}
 	if (nav_map_lines->index_line > 15)
-		return(10);
+		return (10);
 	close (fd);
 	return (0);
 }
 
-int	ft_map_file_name(char *str, t_map **map_lines)
+int	ref_map_file(char *str, int i, int parse_res, t_map **map_lines)
 {
-	int	i;
 	int	fd;
-	int	parse_res;
 
-	i = 0;
 	fd = 0;
-	parse_res = 0;
-	while (str[i] != '\0')
-		i++;
-	if (i == 4)
-		return (1);
 	if (str[i - 1] == 'r' && str[i - 2] == 'e'
 		&& str[i - 3] == 'b' && str[i - 4] == '.')
 	{
@@ -134,8 +125,8 @@ int	ft_map_file_name(char *str, t_map **map_lines)
 			if (parse_res == 0)
 			{
 				parse_res = ft_map_content(map_lines);
-				if (parse_res == 0) //check les murs ext &&
-					return (0);						//le P et le C et le E
+				if (parse_res == 0)
+					return (0);
 				else
 					return (parse_res);
 			}
@@ -144,4 +135,18 @@ int	ft_map_file_name(char *str, t_map **map_lines)
 		}
 	}
 	return (1);
+}
+
+int	ft_map_file_name(char *str, t_map **map_lines)
+{
+	int	i;
+	int	parse_res;
+
+	i = 0;
+	parse_res = 0;
+	while (str[i] != '\0')
+		i++;
+	if (i == 4)
+		return (1);
+	return (ref_map_file(str, i, parse_res, map_lines));
 }

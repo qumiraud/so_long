@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keymap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:01:54 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/26 09:53:42 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/27 14:44:04 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int	cross_click(void *params)
-{
-	void	**params_tab = (void **)params;
-
-	mlx_destroy_image(params_tab[0], params_tab[2]);
-	mlx_destroy_window(params_tab[0], params_tab[1]);
-	mlx_destroy_display(params_tab[0]);
-	mlx_loop_end(params_tab[0]);
-	free (params_tab[0]);
-	exit (EXIT_SUCCESS);
-	return (0);
-}
-
-int esc_key_press(void *params)
-{
-	void    **params_tab = (void **)params;
-
-//	params[0] = {mlx};
-//	params[1] = {mlx_win};
-//	params[2] = {img};
-	mlx_destroy_image(params_tab[0], params_tab[2]);
-	mlx_destroy_window(params_tab[0], params_tab[1]);
-	mlx_destroy_display(params_tab[0]);
-	mlx_loop_end(params_tab[0]);
-	free (params_tab[0]);
-	exit (EXIT_SUCCESS);
-	return (0);
-}
 
 int	check_pos_player(t_image img)
 {
@@ -59,71 +30,27 @@ int	check_pos_player(t_image img)
 	return (4);
 }
 
-int	key_press(int keycode, t_image *params)
+int	ref_key_press(t_image *params, int direction,
+	void (*move_function)(t_image))
 {
-	t_image	*params_tab = params;
-
-	if (keycode == KEY_ESCAPE) // ESC
-		exit_so_long(&params_tab->win);
-
-
-
-		
-	if (keycode == KEY_D || keycode == XK_Right)
-	{
-		if (check_pos_player(*params_tab) == 0)
-			return (0);
-		params_tab->win.counter++;
-		move_to_right(*params_tab);
-	}
-	else if (keycode == KEY_W || keycode == XK_Up)
-	{
-		if (check_pos_player(*params_tab) == 3)
-			return (0);
-		params_tab->win.counter++;
-		move_up(*params_tab);
-	}
-	else if (keycode == KEY_A || keycode == XK_Left)
-	{
-		if (check_pos_player(*params_tab) == 1)
-			return (0);
-		params_tab->win.counter++;
-		move_to_left(*params_tab);
-	}
-	else if (keycode == KEY_S || keycode == XK_Down)
-	{
-		if (check_pos_player(*params_tab) == 2)
-			return (0);
-		params_tab->win.counter++;
-		move_down(*params_tab);
-	}
-	else
+	if (check_pos_player(*params) == direction)
 		return (0);
-	return (0);
+	params->win.counter++;
+	move_function(*params);
+	return (1);
 }
 
-
-
-
-
-
-
-// int esc_key_press(int keycode, void *params)
-// {
-//     void    **params_tab = (void **)params;
-//     //params[0]={mlx};
-//     //params[1]={mlx_win};
-//     //params[2]={img};
-//     if (keycode == 65307)
-//     {
-//         mlx_destroy_image( params_tab[0], params_tab[2]);
-//         mlx_destroy_window(params_tab[0], params_tab[1]);
-//         mlx_destroy_display(params_tab[0]); // gere quasi tout les free
-//         mlx_loop_end(params_tab[0]); 
-//         free(params_tab[0]);
-//         exit (EXIT_SUCCESS);
-//     }
-//     return (0);
-// }
-
-
+int	key_press(int keycode, t_image *params)
+{
+	if (keycode == KEY_ESCAPE)
+		exit_so_long(params);
+	if (keycode == KEY_D || keycode == XK_Right)
+		ref_key_press(params, 0, move_to_right);
+	else if (keycode == KEY_W || keycode == XK_Up)
+		ref_key_press(params, 3, move_up);
+	else if (keycode == KEY_A || keycode == XK_Left)
+		ref_key_press(params, 1, move_to_left);
+	else if (keycode == KEY_S || keycode == XK_Down)
+		ref_key_press(params, 2, move_down);
+	return (0);
+}
