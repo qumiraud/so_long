@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_element.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:00:50 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/27 17:19:30 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:49:28 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_count_element_true(char *line)
 		i++;
 	}
 	if (x != 0)
-		return (x); //* changer le numero de renvoie  a la preference de monsieur
+		return (x);
 	return (0);
 }
 

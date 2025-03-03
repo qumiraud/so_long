@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 17:59:42 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/28 15:22:46 by pjurdana         ###   ########.fr       */
+/*   Created: 2025/02/28 10:47:41 by pjurdana          #+#    #+#             */
+/*   Updated: 2025/02/28 10:48:28 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/so_long.h"
 
-char	*ft_strcpy(const char *src, char *dest)
+int	ft_map_file_name(char *str, t_map **map_lines)
 {
 	int	i;
+	int	parse_res;
 
 	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
+	parse_res = 0;
+	while (str[i] != '\0')
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	if (i == 4)
+		return (1);
+	return (ref_map_file(str, i, parse_res, map_lines));
 }

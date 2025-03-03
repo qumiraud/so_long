@@ -6,12 +6,9 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:55:06 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/27 11:40:43 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:45:40 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-////////////////////////////////////////////////////////////////
-// verif extension de la map
 
 #include "../includes/so_long.h"
 
@@ -82,11 +79,13 @@ void	map_in_struct(int fd, t_map **map_lines)
 	return ;
 }
 
-int	ft_map_form(int fd, t_map **map_lines)
+int	ft_map_form(int fd, t_map **map_lines, int i)
 {
 	t_map	*nav_map_lines;
 
 	map_in_struct(fd, map_lines);
+	if (*map_lines == NULL)
+		return (2);
 	nav_map_lines = (*map_lines);
 	if (fd <= 0)
 	{
@@ -102,9 +101,10 @@ int	ft_map_form(int fd, t_map **map_lines)
 			close (fd);
 			return (2);
 		}
+		i++;
 		nav_map_lines = nav_map_lines->next;
 	}
-	if (nav_map_lines->index_line > 15)
+	if (i > 14)
 		return (10);
 	close (fd);
 	return (0);
@@ -121,7 +121,7 @@ int	ref_map_file(char *str, int i, int parse_res, t_map **map_lines)
 		fd = open(str, O_RDONLY);
 		if (fd > 0)
 		{
-			parse_res = ft_map_form(fd, map_lines);
+			parse_res = ft_map_form(fd, map_lines, 0);
 			if (parse_res == 0)
 			{
 				parse_res = ft_map_content(map_lines);
@@ -135,18 +135,4 @@ int	ref_map_file(char *str, int i, int parse_res, t_map **map_lines)
 		}
 	}
 	return (1);
-}
-
-int	ft_map_file_name(char *str, t_map **map_lines)
-{
-	int	i;
-	int	parse_res;
-
-	i = 0;
-	parse_res = 0;
-	while (str[i] != '\0')
-		i++;
-	if (i == 4)
-		return (1);
-	return (ref_map_file(str, i, parse_res, map_lines));
 }

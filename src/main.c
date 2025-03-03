@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:18:43 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/27 17:09:10 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/03/03 09:35:36 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ int	main(int argc, char **argv)
 	if (map_parse != 0)
 	{
 		ref_main(map_parse, map_lines, map_tab);
-		//* pas de print d'erreurs a corriger
 		return (1);
 	}
 	map_parse = ft_prep_tab(&map_lines, &map_tab);
-	if (map_parse != 0) //* manque de free si == 0
+	if (map_parse != 0)
 	{
 		ref_main(map_parse, map_lines, map_tab);
-		//* pas de print d'erreurs a corriger
 		return (1);
 	}
 	ft_init_mlx(map_tab);

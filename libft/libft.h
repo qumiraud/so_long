@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:31 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/02/21 19:31:40 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/28 15:23:18 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-char	*ft_strcpy(const char *src,  char *dest);
+char	*ft_strcpy(const char *src, char *dest);
 int		ft_tablen(char **tab);
-
-
 
 typedef struct s_list
 {

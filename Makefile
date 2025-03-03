@@ -14,8 +14,13 @@ SRC = 	src/main.c \
 		src/ft_init_tab.c \
 		src/ft_init_mlx.c \
 		src/move_to_right.c \
+		src/move_to_left.c \
+		src/move_down.c \
+		src/move_up.c \
 		src/move_counter.c \
 		src/move_animation.c \
+		src/ft_init_mlx_utils.c \
+		src/parsing_utils.c \
 
 
 INC = includes
